@@ -19,7 +19,7 @@ namespace HFInventApp.Data
         public DbSet<BinLookup> BinLookups { get; set; }
         public DbSet<ProductInventory> ProductInventories { get; set; }
         public DbSet<Sale> Sales { get; set; }
-        public DbSet<SaleDetails> SaleDetails { get; set; }
+        public DbSet<SaleDetail> SaleDetails { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
