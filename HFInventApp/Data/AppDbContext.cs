@@ -21,7 +21,7 @@ namespace HFInventApp.Data
         public DbSet<Sale> Sales { get; set; }
         public DbSet<SaleDetail> SaleDetails { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
+        public DbSet<UserFacility> UserFacilities { get; set; } 
 
         //Add SeedData for all Base Tables
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -139,6 +139,11 @@ namespace HFInventApp.Data
                    new ProductInventory { InventoryId = 10, InventorySKU = "TS3456", FacilityId = 2, ProductId = 2, BinLookupId = 4, Quantity = 15 },
                    new ProductInventory { InventoryId = 11, InventorySKU = "WDG123", FacilityId = 1, ProductId = 1, BinLookupId = 1, Quantity = 20 }
                );
+
+            modelBuilder.Entity<UserFacility>().HasKey(uf => new
+            {
+                uf.UserId, uf.FacilityId
+            });
 
         }
 
