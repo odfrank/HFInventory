@@ -20,6 +20,7 @@ namespace HFInventApp.Data
         public DbSet<ProductInventory> ProductInventories { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<SaleDetails> SaleDetails { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
         //Add SeedData for all Base Tables
