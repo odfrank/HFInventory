@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace HFApp.Models
+namespace HFInventApp.Models
 {
     public class ProductInventory
     {

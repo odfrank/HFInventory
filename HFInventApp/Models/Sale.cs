@@ -1,4 +1,4 @@
-﻿namespace HFApp.Models
+﻿namespace HFInventApp.Models
 {
     public class Sale
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HFApp.Models
+namespace HFInventApp.Models
 {
     public class Customer
     {

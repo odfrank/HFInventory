@@ -1,5 +1,4 @@
-﻿using HFApp.Models;
-using HFInventApp.Models;
+﻿using HFInventApp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HFInventApp.Data
