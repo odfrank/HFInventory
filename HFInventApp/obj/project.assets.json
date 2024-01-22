@@ -11591,11 +11591,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ODFProjects\\HFInventApp\\HFInventApp\\HFInventApp.csproj",
+      "projectUniqueName": "C:\\ODFLocal\\HFInventory\\HFInventApp\\HFInventApp.csproj",
       "projectName": "HFInventApp",
-      "projectPath": "C:\\ODFProjects\\HFInventApp\\HFInventApp\\HFInventApp.csproj",
+      "projectPath": "C:\\ODFLocal\\HFInventory\\HFInventApp\\HFInventApp.csproj",
       "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
-      "outputPath": "C:\\ODFProjects\\HFInventApp\\HFInventApp\\obj\\",
+      "outputPath": "C:\\ODFLocal\\HFInventory\\HFInventApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Damilare\\AppData\\Roaming\\NuGet\\NuGet.Config",

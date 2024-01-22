@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EXopesRrBPZolUlXZ9vD3A8uApA/zUAu23kcZaagcpLdZs2Rcc6mCoaA5Q1+V1f+Jg4Vlz28r+gJDeKNklQS3Q==",
+  "dgSpecHash": "Rrqy1T7XK4lsqPtrtfkUZ39kgvzQL06w5KRjQvABLemwpjpy0nSlTcYZcfIUkwqkNv5U3AqJPEtf//xcBknpUg==",
   "success": true,
-  "projectFilePath": "C:\\ODFProjects\\HFInventApp\\HFInventApp\\HFInventApp.csproj",
+  "projectFilePath": "C:\\ODFLocal\\HFInventory\\HFInventApp\\HFInventApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Damilare\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Damilare\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
