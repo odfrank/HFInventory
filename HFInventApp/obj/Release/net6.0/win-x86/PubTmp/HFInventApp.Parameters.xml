@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="HFInventApp" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\ODFLocal\\HFInventory\\HFInventApp\\obj\\Release\\net6\.0\\win-x86\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

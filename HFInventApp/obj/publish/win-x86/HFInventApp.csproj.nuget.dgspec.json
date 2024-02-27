@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ODFProjects\\HFInventApp\\HFInventApp\\HFInventApp.csproj": {}
+    "C:\\ODFLocal\\HFInventory\\HFInventApp\\HFInventApp.csproj": {}
   },
   "projects": {
-    "C:\\ODFProjects\\HFInventApp\\HFInventApp\\HFInventApp.csproj": {
+    "C:\\ODFLocal\\HFInventory\\HFInventApp\\HFInventApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ODFProjects\\HFInventApp\\HFInventApp\\HFInventApp.csproj",
+        "projectUniqueName": "C:\\ODFLocal\\HFInventory\\HFInventApp\\HFInventApp.csproj",
         "projectName": "HFInventApp",
-        "projectPath": "C:\\ODFProjects\\HFInventApp\\HFInventApp\\HFInventApp.csproj",
+        "projectPath": "C:\\ODFLocal\\HFInventory\\HFInventApp\\HFInventApp.csproj",
         "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
-        "outputPath": "C:\\ODFProjects\\HFInventApp\\HFInventApp\\obj\\publish\\win-x86\\",
+        "outputPath": "C:\\ODFLocal\\HFInventory\\HFInventApp\\obj\\publish\\win-x86\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Damilare\\AppData\\Roaming\\NuGet\\NuGet.Config",
