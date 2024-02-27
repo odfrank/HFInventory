@@ -1,0 +1,75 @@
+﻿@using HFInventApp.ViewModels
+
+@model List<CylinderRentHistory>
+
+@{
+    ViewData["Title"] = "Cylinder History";
+}
+
+<h1>Cylinder Rent History</h1>
+
+<div class="container">
+@*    <div class="row pb-2">
+        <div class="col-12 text-end">
+            <div class="btn-group">
+                <a asp-controller="Cylinder" asp-action="Create" class="btn btn-outline-primary">
+                    <i class="bi bi-plus"></i> Add New
+                </a>
+                <span> &nbsp; &nbsp; &nbsp; &nbsp; </span>
+                <a asp-controller="Cylinder" asp-action="Create" class="btn btn-outline-primary">
+                    <i class="bi bi-plus"></i> Borrow / Return
+                </a>
+            </div>
+        </div>
+    </div>*@
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Batch Number
+                </th>
+                @*<th>
+                    Cylinder Name
+                </th>*@                
+                <th>
+                    Customer
+                </th>
+                <th>
+                    Transaction
+                </th>
+                <th>
+                    Date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var numb = 1;
+
+                @foreach (var history in Model)
+                {
+                    <tr>
+                        <td>@numb</td>
+                        <td>@history.BatchNumber.ToString().ToUpper()</td>
+                        <td>@history.CustomerId</td>
+                        <td>@history.Transaction</td>
+                        <td>@history.RentDate.ToString()</td>
+                        <td style="width:75px;justify-content:center;">
+                            
+                        </td>
+                    </tr>
+
+                    numb = numb + 1;
+
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

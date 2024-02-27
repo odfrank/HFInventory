@@ -14,5 +14,6 @@ namespace HFInventApp.Models
         public int Quantity { get; set; }
         [DisplayName("Inventory SKU")]
         public string? InventorySKU { get; set; }
+        public Guid InventoryBatch { get; set; } = Guid.NewGuid();
     }
 }

@@ -1,0 +1,97 @@
+﻿@model Customer
+
+@{
+    ViewData["Title"] = "Add Customer";
+}
+
+<h1>Add New Customer</h1>
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="mb-3 row p-1">
+            <label asp-for="CustomerName" class="p-0"></label>
+            <input asp-for="CustomerName" class="form-control" />
+            <span asp-validation-for="CustomerName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="ContactTitle" class="p-0"></label>
+            <input asp-for="ContactTitle" class="form-control" />
+            <span asp-validation-for="ContactTitle" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="CompanyName" class="p-0"></label>
+            <input asp-for="CompanyName" class="form-control" />
+            <span asp-validation-for="CompanyName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Address" class="p-0"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="City" class="p-0"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="State" class="p-0"></label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Country" class="p-0"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="ZipCode" class="p-0"></label>
+            <input asp-for="ZipCode" class="form-control" />
+            <span asp-validation-for="ZipCode" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="PhoneNumber" class="p-0"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="FaxNumber" class="p-0"></label>
+            <input asp-for="FaxNumber" class="form-control" />
+            <span asp-validation-for="FaxNumber" class="text-danger"></span>
+        </div>        
+        <div class="mb-3 row p-1">
+            <label asp-for="Email" class="p-0"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        @*<div class="mb-3 row p-1">
+            <label asp-for="FacilityId" class="p-0"></label>
+            <input asp-for="FacilityId" class="form-control" />
+            <span asp-validation-for="FacilityId" class="text-danger"></span>
+        </div>*@
+        <div class="mb-3 row p-1">
+            <label class="p-0">Customer Facility</label>
+            <select asp-for="FacilityId" asp-items="ViewBag.FacilitySelectList" class="form-select p-0">
+                <option disabled selected>--Choose Facility--</option>
+            </select>            
+            <span asp-validation-for="FacilityId" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Add Customer</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Customer" asp-action="Index" class="btn btn-outline-dark border-2 form-control">
+                    Back To List
+                </a>
+            </div>
+        </div>
+        
+        
+    </div>
+</form>
+
+    @section Scripts{
+        @{
+        <partial name="_ValidationScriptsPartial" />
+        }
+    }

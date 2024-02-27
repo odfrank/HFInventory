@@ -1,0 +1,132 @@
+﻿@using HFInventApp.ViewModels
+
+@model vmSaleCart
+
+@{
+    ViewData["Title"] = "Sales";
+}
+
+<h1>Product Sales Cart</h1>
+
+<form method="post">
+
+    <div class="container">
+    <div class="row pb-2">
+        <div class="col-3">
+            <select asp-for="@Model.CustomerId" asp-items="ViewBag.CustomerSelectList" class="form-select p-0">
+                <option disabled selected>--Choose Customer--</option>
+            </select>
+            <span asp-validation-for="@Model.CustomerId" class="text-danger"></span>
+        </div>
+        <div class="col-3">
+            <select asp-for="@Model.FacilityId" asp-items="ViewBag.FacilitySelectList" class="form-select p-0">
+                <option disabled selected>--Choose Facility--</option>
+            </select>
+            <span asp-validation-for="@Model.FacilityId" class="text-danger"></span>
+        </div> 
+        <div class="col-6 text-end">
+            <a asp-controller="Sale" asp-action="CreateDetail" class="btn btn-outline-primary">
+                <i class="bi bi-plus"></i> Add New Product
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Current Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Sale Price ($)
+                </th>                                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                @{
+                    var numb = 1;
+                    var totalPrice = 0;
+                    
+                        @foreach (var sale in Model.SaleProducts)
+                        {
+                            //var product = _db.Products.FirstOrDefault(p => p.ProductId == saleDetail.ProductId);
+                            <tr>
+                                <td>@numb</td>
+                                <td>
+                                    @sale.Product.ProductName
+                                </td>
+                                <td>
+                                    @sale.Product.ProductDescription
+                                </td>
+                                <td>
+                                    @sale.Product.Price
+                                </td>
+                                <td>
+                                    @sale.Quantity
+                                </td>
+                                <td>
+                                    @sale.SalePrice
+                                </td>
+                                <td style="width:75px;justify-content:center;">
+                                    <div class="w-75 btn-group">
+                                        <a asp-controller="Sale" asp-action="Index" asp-route-id="" class="btn btn-outline-success">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a> &nbsp;&nbsp;
+                                        <a asp-controller="Sale" asp-action="Index" asp-route-id="" class="btn btn-outline-danger">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                            numb = numb + 1;
+                            totalPrice += (int)@sale.SalePrice;
+
+                        }
+                    
+
+                }           
+
+        </tbody>
+    </table>
+
+    @if (@Model.SaleProducts.Count >= 1)
+    {
+        <p class="divider-text d-flex pt-1 pb-3">Total Sale Price: @totalPrice</p>
+    }
+    
+
+        <input asp-for="@Model.TotalSalePrice" hidden value="@totalPrice" />
+        <div class="row">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control">Complete Sale</button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-controller="Sale" asp-action="CancelSale" class="btn btn-outline-dark border-2 form-control">
+                        Cancel Sale
+                    </a>
+                </div>
+            </div>
+</div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

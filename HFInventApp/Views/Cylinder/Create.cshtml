@@ -1,0 +1,42 @@
+﻿@model Cylinder
+
+@{
+    ViewData["Title"] = "Add Cylinder";
+}
+
+<h1>Add New Cylinder</h1>
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="mb-3 row p-1">
+            <label asp-for="CylinderName" class="p-0"></label>
+            <input asp-for="CylinderName" class="form-control" />
+            <span asp-validation-for="CylinderName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label class="p-0">Loaned Customer</label>
+            <select asp-for="CustomerId" asp-items="ViewBag.CustomerSelectList" class="form-select p-0">
+                <option disabled selected>--Choose Customer--</option>
+            </select>            
+            <span asp-validation-for="CustomerId" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Add Cylinder</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Cylinder" asp-action="Index" class="btn btn-outline-dark border-2 form-control">
+                    Back To List
+                </a>
+            </div>
+        </div>
+        
+        
+    </div>
+</form>
+
+    @section Scripts{
+        @{
+        <partial name="_ValidationScriptsPartial" />
+        }
+    }

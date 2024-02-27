@@ -1,0 +1,60 @@
+﻿@model BinLookup
+
+@{
+    ViewData["Title"] = "Add BinLookup";
+}
+
+<h1>Add New BinLookup</h1>
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="mb-3 row p-1">
+            <label asp-for="BinNumber" class="p-0"></label>
+            <input asp-for="BinNumber" class="form-control" />
+            <span asp-validation-for="BinNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Description" class="p-0"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Location" class="p-0"></label>
+            <input asp-for="Location" class="form-control" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Width" class="p-0"></label>
+            <input asp-for="Width" class="form-control" />
+            <span asp-validation-for="Width" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Height" class="p-0"></label>
+            <input asp-for="Height" class="form-control" />
+            <span asp-validation-for="Height" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Length" class="p-0"></label>
+            <input asp-for="Length" class="form-control" />
+            <span asp-validation-for="Length" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Add BinLookup</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Binlookup" asp-action="Index" class="btn btn-outline-dark border-2 form-control">
+                    Back To List
+                </a>
+            </div>
+        </div>
+        
+        
+    </div>
+</form>
+
+    @section Scripts{
+        @{
+        <partial name="_ValidationScriptsPartial" />
+        }
+    }

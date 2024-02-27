@@ -1,0 +1,107 @@
+﻿@using HFInventApp.ViewModels
+
+@model vmProductInventories
+
+@{
+    ViewData["Title"] = "Inventories";
+}
+
+<h1>Product Inventories</h1>
+
+<div class="container">
+    <div class="row pb-2">
+        <div class="col-6">
+           
+        </div>    
+        <div class="col-6 text-end">
+            <a asp-controller="ProductInventory" asp-action="Create" class="btn btn-outline-primary">
+                <i class="bi bi-plus"></i> Add New
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Inventory Batch Number
+                </th>
+                <th>
+                    Facility
+                </th>
+                <th>
+                    Product
+                </th>
+                <th>
+                    BIN Lookup
+                </th>                
+                <th>
+                    Quantity
+                </th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var numb = 1;
+
+                @foreach (var prodInventory in Model.ProductInventories)
+                {                    
+                    <tr>
+                        <td>@numb</td>
+                        <td>@prodInventory.InventoryBatch.ToString().ToUpper()</td>
+                        <td>
+                            @{
+                                var facility = @Model.Facilities.FirstOrDefault(f => f.FacilityId == prodInventory.FacilityId);
+                                if (facility != null)
+                                {
+                                    @facility.FacilityName
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                var product = @Model.Products.FirstOrDefault(p => p.ProductId == prodInventory.ProductId);
+                                if (product != null)
+                                {
+                                    @product.ProductName
+                                }                                        
+                            }
+                        </td>
+
+                        <td>
+                            @{
+                                var binLookup = @Model.BinLookups.FirstOrDefault(b => b.BinLookupId == prodInventory.BinLookupId);
+                                if (binLookup != null)
+                                {
+                                    <span>@binLookup.BinNumber - @binLookup.Description</span>
+                                }
+                            }
+                        </td>
+
+                        <td>@prodInventory.Quantity</td>
+                                    
+                        <td style="width:75px;justify-content:center;">
+                            <div class="w-75 btn-group">
+                        <a asp-controller="ProductInventory" asp-action="Edit" asp-route-id="@prodInventory.InventoryId" class="btn btn-outline-success">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a> &nbsp;&nbsp;
+                        <a asp-controller="ProductInventory" asp-action="Delete" asp-route-id="@prodInventory.InventoryId" class="btn btn-outline-danger">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a> 
+                            </div>
+                        </td>
+                    </tr>
+                
+                    numb = numb + 1;
+                
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

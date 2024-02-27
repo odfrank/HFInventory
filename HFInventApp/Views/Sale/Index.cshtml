@@ -1,0 +1,83 @@
+﻿@using HFInventApp.ViewModels
+
+@model List<vmSales>
+
+@{
+    ViewData["Title"] = "Sales";
+}
+
+<h1>Sales Record</h1>
+
+<div class="container">
+    <div class="row pb-2">
+        <div class="col-6">
+           
+        </div>    
+        <div class="col-6 text-end">
+            <a asp-controller="Sale" asp-action="Create" class="btn btn-outline-primary">
+                <i class="bi bi-plus"></i> Add New Sale
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Facility
+                </th>
+                <th>
+                    Customer
+                </th>
+                <th>
+                    Sale Date
+                </th>
+                <th>
+                    Total Price ($)
+                </th>
+                <th>
+                    Sold By
+                </th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var numb = 1;   
+                
+                                @foreach (var sale in Model)
+                    {                    
+                                    <tr>
+                                        <td class="text-center">
+                                            <a asp-controller="Sale" asp-action="Index" asp-route-id="@sale.SaleId" class="btn-outline-success">@numb</a>
+                                        </td>
+                                        <td>@sale.SaleFacility.FacilityName</td>
+                                        <td>@sale.SaleCustomer.CustomerName - @sale.SaleCustomer.CompanyName </td>
+                                        <td>@sale.SaleDate.ToString()</td>
+                                        <td>@sale.TotalSalePrice</td>
+                                        <td>@sale.SaleUser</td>
+
+                                        <td style="width:75px;justify-content:center;">
+                                            <div class="w-75 btn-group">
+                                                <a asp-controller="Sale" asp-action="Index" asp-route-id="@sale.SaleId" class="btn btn-outline-success" style="pointer-events:none;color:grey;">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a> &nbsp;&nbsp;
+                                                <a asp-controller="Sale" asp-action="Index" asp-route-id="@sale.SaleId" class="btn btn-outline-danger" style="pointer-events:none;color:grey;">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </a> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                
+                    numb = numb + 1;
+                
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

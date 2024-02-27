@@ -1,0 +1,47 @@
+﻿@model BinLookup
+
+@{
+    ViewData["Title"] = "Delete BinLookup";
+}
+
+<h1>Delete BinLookup</h1>
+
+<form method="post">
+    <input asp-for="BinLookupId" hidden />
+    <div class="border p-3 mt-4">
+        <div class="mb-3 row p-1">
+            <label asp-for="BinNumber" class="p-0"></label>
+            <input asp-for="BinNumber" disabled class="form-control" />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Description" class="p-0"></label>
+            <input asp-for="Description" disabled class="form-control" />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Location" class="p-0"></label>
+            <input asp-for="Location" disabled class="form-control" />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Width" class="p-0"></label>
+            <input asp-for="Width" disabled class="form-control" />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Height" class="p-0"></label>
+            <input asp-for="Height" disabled class="form-control" />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Length" class="p-0"></label>
+            <input asp-for="Length" disabled class="form-control" />
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Delete BinLookup</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Binlookup" asp-action="Index" class="btn btn-outline-dark border-2 form-control">
+                    Back To List
+                </a>
+            </div>
+        </div>
+    </div>
+</form>

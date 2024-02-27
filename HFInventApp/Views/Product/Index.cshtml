@@ -1,0 +1,74 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+<div class="container">
+    <div class="row pb-2">
+        <div class="col-6">
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Create" class="btn btn-outline-primary">
+                <i class="bi bi-plus"></i> Add New
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Batch Num
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var numb = 1;
+
+
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@numb</td>
+                        <td>@product.BatchNumber.ToString().ToUpper()</td>
+                        <td>@product.ProductName</td>
+                        <td>@product.ProductDescription</td>
+                        <td>$@product.Price</td>
+                        <td style="width:75px;justify-content:center;">
+                            <div class="w-75 btn-group">
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-outline-success">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a> &nbsp;&nbsp;
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-outline-danger">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    numb = numb + 1;
+
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

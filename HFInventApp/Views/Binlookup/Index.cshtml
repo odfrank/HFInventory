@@ -1,0 +1,83 @@
+﻿@model List<BinLookup>
+
+@{
+    ViewData["Title"] = "Bin Lookups";
+}
+
+<h1>BIN Lookups</h1>
+
+<div class="container">
+    <div class="row pb-2">
+        <div class="col-6">
+           
+        </div>    
+        <div class="col-6 text-end">
+            <a asp-controller="Binlookup" asp-action="Create" class="btn btn-outline-primary">
+                <i class="bi bi-plus"></i> Add New
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    BIN Number
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Width
+                </th>
+                <th>
+                    Height
+                </th>
+                <th>
+                    Length
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var numb = 1;
+
+
+                            @foreach (var Binlookup in Model)
+                {
+                                <tr>
+                                    <td>@numb</td>
+                                    <td>@Binlookup.BinNumber</td>
+                                    <td>@Binlookup.Description</td>
+                                    <td>@Binlookup.Location</td>
+                                    <td>@Binlookup.Width</td>
+                                    <td>@Binlookup.Height</td>
+                                    <td>@Binlookup.Length</td>
+                                    <td style="width:75px;justify-content:center;">
+                                        <div class="w-75 btn-group">
+                                    <a asp-controller="Binlookup" asp-action="Edit" asp-route-id="@Binlookup.BinLookupId" class="btn btn-outline-success">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a> &nbsp;&nbsp;
+                                <a asp-controller="Binlookup" asp-action="Delete" asp-route-id="@Binlookup.BinLookupId" class="btn btn-outline-danger">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a> 
+                                        </div>
+                                    </td>
+                                </tr>
+                
+                    numb = numb + 1;
+                
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,89 @@
+﻿@using HFInventApp.ViewModels
+
+@model vmCustomerCylinders
+
+@{
+    ViewData["Title"] = "Cylinders";
+}
+
+<h1>Cylinders</h1>
+
+<div class="container">
+    <div class="row pb-2">
+        <div class="col-12 text-end">
+            <div class="btn-group">
+                <a asp-controller="Cylinder" asp-action="Create" class="btn btn-outline-primary">
+                    <i class="bi bi-plus"></i> Add New
+                </a>
+                <span> &nbsp; &nbsp; &nbsp; &nbsp; </span>
+                <a asp-controller="Cylinder" asp-action="Create" class="btn btn-outline-primary">
+                    <i class="bi bi-plus"></i> Borrow / Return
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Batch Number
+                </th>
+                <th>
+                    Cylinder Name
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Customer
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var numb = 1;
+
+                @foreach (var cylinder in Model.Cylinders)
+                {
+                    var status = !cylinder.CustomerId.HasValue ? "Available" : "Borrowed";
+                    <tr>
+                        <td>@numb</td>
+                        <td>@cylinder.BatchNumber.ToString().ToUpper()</td>
+                        <td>@cylinder.CylinderName</td>
+                        <td>@status</td>
+                        <td>
+                            @{
+                                var customer = @Model.Customers.FirstOrDefault(c => c.CustomerId == cylinder.CustomerId);
+                                if (customer != null)
+                                {
+                                    @customer.CustomerName
+                                }
+                            }
+                        </td>
+
+                        <td style="width:75px;justify-content:center;">
+                            <div class="w-75 btn-group">
+                                <a asp-controller="Cylinder" asp-action="Edit" asp-route-id="@cylinder.CylinderId" class="btn btn-outline-success">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a> &nbsp;&nbsp;
+                                <a asp-controller="Cylinder" asp-action="Delete" asp-route-id="@cylinder.CylinderId" class="btn btn-outline-danger">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    numb = numb + 1;
+
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

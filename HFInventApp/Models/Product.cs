@@ -14,5 +14,9 @@ namespace HFInventApp.Models
         public string ProductDescription { get; set; }
 
         public decimal Price { get; set; }
+
+        [Required]
+        public Guid BatchNumber { get; set; } 
+
     }
 }

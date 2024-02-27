@@ -211,6 +211,30 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/ODFLocal/HFInventory/HFInventApp/Views/Cylinder/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3lsaW5kZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ODFLocal/HFInventory/HFInventApp/Views/Cylinder/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3lsaW5kZXJcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ODFLocal/HFInventory/HFInventApp/Views/Cylinder/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3lsaW5kZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ODFLocal/HFInventory/HFInventApp/Views/Cylinder/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3lsaW5kZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ODFLocal/HFInventory/HFInventApp/Views/Cylinder/RentCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3lsaW5kZXJcUmVudENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ODFLocal/HFInventory/HFInventApp/Views/Cylinder/RentIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3lsaW5kZXJcUmVudEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/ODFLocal/HFInventory/HFInventApp/Views/Facility/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjaWxpdHlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

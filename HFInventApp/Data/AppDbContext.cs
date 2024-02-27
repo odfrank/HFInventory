@@ -22,6 +22,8 @@ namespace HFInventApp.Data
         public DbSet<SaleDetail> SaleDetails { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<UserFacility> UserFacilities { get; set; } 
+        public DbSet<Cylinder> Cylinders { get; set; }
+        public DbSet<CylinderRentHistory> CylinderRentHistories { get; set; }
 
         //Add SeedData for all Base Tables
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -145,6 +147,12 @@ namespace HFInventApp.Data
                 uf.UserId, uf.FacilityId
             });
 
+            modelBuilder.Entity<Cylinder>().HasData(
+                    new Cylinder { CylinderId = 1, BatchNumber = Guid.NewGuid(), CylinderName = "Cylinder1", CustomerId = 1 },
+                    new Cylinder { CylinderId = 2, BatchNumber = Guid.NewGuid(), CylinderName = "Cylinder2", CustomerId = 2 },
+                    new Cylinder { CylinderId = 3, BatchNumber = Guid.NewGuid(), CylinderName = "Cylinder3", CustomerId = 3 },
+                    new Cylinder { CylinderId = 4, BatchNumber = Guid.NewGuid(), CylinderName = "Cylinder4", CustomerId = null }
+              );
         }
 
     }
