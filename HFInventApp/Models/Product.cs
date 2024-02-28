@@ -16,7 +16,7 @@ namespace HFInventApp.Models
         public decimal Price { get; set; }
 
         [Required]
-        public Guid BatchNumber { get; set; } 
+        public Guid BatchNumber { get; set; } = Guid.NewGuid();
 
     }
 }

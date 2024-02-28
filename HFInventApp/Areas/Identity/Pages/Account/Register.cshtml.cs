@@ -115,19 +115,20 @@ namespace HFInventApp.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!_roleManager.RoleExistsAsync(RoleSD.Role_Admin1).GetAwaiter().GetResult())
-            {
-                _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Admin1)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Admin2)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Employee)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Customer)).GetAwaiter().GetResult();
-            }
+            //if (!_roleManager.RoleExistsAsync(RoleSD.Role_Admin1).GetAwaiter().GetResult())
+            //{
+            //    _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Admin1)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Admin2)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Employee)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Guest)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Customer)).GetAwaiter().GetResult();
+            //}
 
             // In final code, GuestRole should be added to the section above to create all five roles together
-            if (!_roleManager.RoleExistsAsync(RoleSD.Role_Guest).GetAwaiter().GetResult())
-            {
-                _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Guest)).GetAwaiter().GetResult();
-            }
+            //if (!_roleManager.RoleExistsAsync(RoleSD.Role_Guest).GetAwaiter().GetResult())
+            //{
+            //    _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Guest)).GetAwaiter().GetResult();
+            //}
 
             Input = new()
             {
