@@ -87,6 +87,7 @@ namespace HFInventApp.Controllers
 
         // Update Cylinder
         [HttpPost]
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(Cylinder obj)
         {
             Cylinder dbCylinder = _db.Cylinders.Find(obj.CylinderId);
@@ -118,6 +119,7 @@ namespace HFInventApp.Controllers
             return View(dbCylinder);
         }
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult DeletePOST(int? id)
         {
             Cylinder? dbCylinder = _db.Cylinders.Find(id);

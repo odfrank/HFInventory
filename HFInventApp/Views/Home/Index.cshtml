@@ -2,7 +2,69 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center text-primary">
     <h1 class="pt-5 display-3">Welcome to CIMS</h1>
     <h2 class="display-8">The HFEnergy Central Inventory Management System</h2>
 </div>
+
+@if (User.IsInRole(RoleSD.Role_Employee))
+{
+
+    <div class="row p-3">
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="Sale" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Sales</span>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="Cylinder" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Cylinders</span>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Products</span>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="ProductInventory" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Inventories</span>
+            </a>
+        </div>
+        
+        
+    </div>
+
+    <div class="row p-3">
+
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="Facility" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Facilities</span>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="Binlookup" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Bin Lookups</span>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="Customer" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Customers</span>
+            </a>
+        </div>
+        
+        
+        <div class="col-lg-3 col-sm-6">
+            <a asp-controller="User" asp-action="Index" class="btn btn-outline-primary btn-tile">
+                <span class="btn-text">Users</span>
+            </a>
+        </div>
+    </div>
+}
+
+

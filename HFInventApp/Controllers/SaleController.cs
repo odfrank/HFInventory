@@ -213,9 +213,9 @@ namespace HFInventApp.Controllers
             return View();
         }
 
-            //Edit Sale
-            //[Authorize(Roles = RoleSD.Role_Admin2)]
-            [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
+        //Edit Sale
+        //[Authorize(Roles = RoleSD.Role_Admin2)]
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0) return NotFound();
@@ -238,6 +238,7 @@ namespace HFInventApp.Controllers
 
         // Update Sale
         [HttpPost]
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(Sale obj)
         {
             if (ModelState.IsValid)
@@ -263,7 +264,9 @@ namespace HFInventApp.Controllers
 
             return View(dbSale);
         }
+
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult DeletePOST(int? id)
         {
             Sale? dbSale = _db.Sales.Find(id);

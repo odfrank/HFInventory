@@ -87,6 +87,7 @@ namespace HFInventApp.Controllers
 
         // Update Customer
         [HttpPost]
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(Customer obj)
         {
             if (ModelState.IsValid)
@@ -113,6 +114,7 @@ namespace HFInventApp.Controllers
             return View(dbCustomer);
         }
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult DeletePOST(int? id)
         {
             Customer? dbCustomer = _db.Customers.Find(id);

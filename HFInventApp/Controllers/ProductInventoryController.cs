@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace HFInventApp.Controllers
 {
-    [Authorize(Roles = RoleSD.Role_Admin1)]
+    //[Authorize(Roles = RoleSD.Role_Admin1)]
     public class ProductInventoryController : Controller
     {
         private readonly AppDbContext _db;
@@ -91,6 +91,7 @@ namespace HFInventApp.Controllers
         }
 
         //Edit Product Inventory
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0) return NotFound();
@@ -138,6 +139,7 @@ namespace HFInventApp.Controllers
 
         // Update Customer
         [HttpPost]
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(ProductInventory obj)
         {
             if (ModelState.IsValid)
@@ -152,6 +154,7 @@ namespace HFInventApp.Controllers
         }
 
         //Delete ProductInventory
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
@@ -163,6 +166,7 @@ namespace HFInventApp.Controllers
             return View(dbProductInventory);
         }
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult DeletePOST(int? id)
         {
             ProductInventory? dbProductInventory = _db.ProductInventories.Find(id);

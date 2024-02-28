@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace HFInventApp.Controllers
 {
-    [Authorize(Roles = RoleSD.Role_Admin1)]
+    //[Authorize(Roles = RoleSD.Role_Admin1)]
     public class BinlookupController : Controller
     {
         private readonly AppDbContext _db;
@@ -41,6 +41,7 @@ namespace HFInventApp.Controllers
         }
 
         //Edit BinLookup
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0) return NotFound();
@@ -54,6 +55,7 @@ namespace HFInventApp.Controllers
 
         // Update BinLookup
         [HttpPost]
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(BinLookup obj)
         {
             if (ModelState.IsValid)
@@ -68,6 +70,7 @@ namespace HFInventApp.Controllers
         }
 
         //Delete BinLookup
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
@@ -79,6 +82,7 @@ namespace HFInventApp.Controllers
             return View(dbBinLookup);
         }
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult DeletePOST(int? id)
         {
             BinLookup? dbBinLookup = _db.BinLookups.Find(id);

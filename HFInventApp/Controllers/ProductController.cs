@@ -7,7 +7,7 @@ using System.Data;
 
 namespace HFInventApp.Controllers
 {
-    [Authorize(Roles = RoleSD.Role_Admin1)]
+    //[Authorize(Roles = RoleSD.Role_Admin1)]
     public class ProductController : Controller
     {
         private readonly AppDbContext _db;
@@ -42,6 +42,7 @@ namespace HFInventApp.Controllers
         }
 
         //Edit Product
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0) return NotFound();
@@ -55,6 +56,7 @@ namespace HFInventApp.Controllers
 
         // Update Product
         [HttpPost]
+        [Authorize(Roles = RoleSD.Role_Admin1 + "," + RoleSD.Role_Admin2)]
         public IActionResult Edit(Product obj)
         {
             if (ModelState.IsValid)
@@ -69,6 +71,7 @@ namespace HFInventApp.Controllers
         }
 
         //Delete Product
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
@@ -80,6 +83,7 @@ namespace HFInventApp.Controllers
             return View(dbProduct);
         }
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult DeletePOST(int? id)
         {
             Product? dbProduct = _db.Products.Find(id);
