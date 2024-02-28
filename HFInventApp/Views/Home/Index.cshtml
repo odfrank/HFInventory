@@ -7,7 +7,7 @@
     <h2 class="display-8">The HFEnergy Central Inventory Management System</h2>
 </div>
 
-@if (User.IsInRole(RoleSD.Role_Employee))
+@if (User.IsInRole(RoleSD.Role_Employee) || User.IsInRole(RoleSD.Role_Admin2))
 {
 
     <div class="row p-3">

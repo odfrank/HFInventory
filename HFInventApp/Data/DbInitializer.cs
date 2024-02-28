@@ -55,6 +55,36 @@ namespace HFInventApp.Data
                 // Assign created adminUser to Admin1 Role
                 ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin1@hfenergy.com");
                 _userManager.AddToRoleAsync(user, RoleSD.Role_Admin1).GetAwaiter().GetResult();
+
+                //------------------------------------------------------------------------------------
+                // create the first Admin2 user if not existing
+                _userManager.CreateAsync(new ApplicationUser
+                {
+                    UserName = "admin2@hfenergy.com",
+                    Email = "admin2@hfenergy.com",
+                    FullName = "HF Admin2",
+                    JobTitle = "Admin"
+                }, "MasterAdmin2**").GetAwaiter().GetResult();
+
+                // Assign created adminUser to Admin1 Role
+                ApplicationUser user2 = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin2@hfenergy.com");
+                _userManager.AddToRoleAsync(user2, RoleSD.Role_Admin2).GetAwaiter().GetResult();
+
+                //------------------------------------------------------------------------------------
+                // create the first Admin1 user if not existing
+                _userManager.CreateAsync(new ApplicationUser
+                {
+                    UserName = "employee@hfenergy.com",
+                    Email = "employee@hfenergy.com",
+                    FullName = "HF Employee",
+                    JobTitle = "Employee"
+                }, "Employee1**").GetAwaiter().GetResult();
+
+                // Assign created adminUser to Admin1 Role
+                ApplicationUser user3 = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "employee@hfenergy.com");
+                _userManager.AddToRoleAsync(user3, RoleSD.Role_Employee).GetAwaiter().GetResult();
+
+
             }
 
             return;
