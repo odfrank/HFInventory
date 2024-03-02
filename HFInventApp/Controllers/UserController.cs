@@ -74,6 +74,36 @@ namespace HFInventApp.Controllers
             return View(objUsers);
         }
 
+        // Add-Create New User By Admin1
+        [Authorize(Roles = RoleSD.Role_Admin1)]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize(Roles = RoleSD.Role_Admin1)]
+        public IActionResult Create(vmUsers obj)
+        {
+            // Add to ApplicationUsers table
+            if (obj.UserInfo != null && ModelState.IsValid)
+            {
+                _db.ApplicationUsers.Add(obj.UserInfo);
+                _db.SaveChanges();
+
+
+                // Add to UserRoles table
+
+
+                // Add to UserFacilities table
+
+
+                //Return to Index page
+                TempData["success"] = "Facility created successfully";
+                return RedirectToAction("Index", "Facility");
+            }
+
+            return View();
+        }
         //Edit User
         public IActionResult Edit(string? id)
         {
@@ -118,8 +148,11 @@ namespace HFInventApp.Controllers
         public async Task<IActionResult> Edit(vmUsers obj)
         {
             ApplicationUser? dbUser = _db.ApplicationUsers.Find(obj.UserInfo.Id);
+            //var testUserRole = _db.UserRoles.FirstOrDefault(u => u.UserId == obj.UserInfo.Id);
+            IdentityUserRole<string> testUserRole = _db.UserRoles.FirstOrDefault(u => u.UserId == obj.UserInfo.Id);
 
-            //Update Changes to UserFacility table
+
+            //Update Changes to UserFacilities table
             UserFacility? testUserFac = _db.UserFacilities.FirstOrDefault(u => u.UserId == obj.UserInfo.Id);
             if (testUserFac != null && testUserFac.FacilityId != obj.FacilityId)
             {
@@ -129,6 +162,7 @@ namespace HFInventApp.Controllers
 
                 testUserFac.FacilityId = (int)obj.FacilityId;
                 _db.UserFacilities.Add(testUserFac);
+                _db.SaveChanges();
             }
             else if(testUserFac == null && obj.FacilityId != null)
             {
@@ -138,9 +172,8 @@ namespace HFInventApp.Controllers
                     UserId = obj.UserInfo.Id,
                     FacilityId = (int)obj.FacilityId
                 });
-            }            
-
-            //Update
+                _db.SaveChanges();
+            }
 
 
             //Update changes to Users table
@@ -153,11 +186,35 @@ namespace HFInventApp.Controllers
 
                 _db.Users.Update(dbUser);
                 _db.SaveChanges();
-                TempData["success"] = "User updated successfully";
-                return RedirectToAction("Index", "User");
             }
-            
-            return View();
+
+            //Update changes to UserRoles table
+            if (testUserRole != null && testUserRole.RoleId != obj.RoleId)
+            {
+                //Update Scenario
+                _db.UserRoles.Remove(testUserRole);
+                _db.SaveChanges();
+
+                testUserRole.RoleId = obj.RoleId;
+                _db.UserRoles.Add(testUserRole);
+                _db.SaveChanges();
+
+
+            }
+            else if (testUserRole == null && obj.RoleId != null)
+            {
+                //New Addition Scenario - Logically, this should never happen actually
+                _db.UserRoles.Add(new IdentityUserRole<string>
+                {
+                    UserId = obj.UserInfo.Id,
+                    RoleId = obj.RoleId
+                });
+                _db.SaveChanges();               
+            }
+
+            _db.SaveChanges();
+            TempData["success"] = "User updated successfully";
+            return RedirectToAction("Index", "User");                 
         }
 
         //Delete User
