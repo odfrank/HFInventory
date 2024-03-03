@@ -13,5 +13,6 @@ namespace HFInventApp.ViewModels
         public string? FacilityName { get; set; }
         public string? RoleId { get; set; }
         public string? Role { get; set; }
+        public string? Password { get; set; }
     }
 }

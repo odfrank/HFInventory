@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using HFInventApp.Utility;
 using Microsoft.AspNetCore.Authentication;
+using HFInventApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

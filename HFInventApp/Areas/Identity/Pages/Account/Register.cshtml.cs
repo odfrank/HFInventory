@@ -26,7 +26,7 @@ namespace HFInventApp.Areas.Identity.Pages.Account
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<IdentityUser> _roleManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
@@ -35,7 +35,7 @@ namespace HFInventApp.Areas.Identity.Pages.Account
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager,
+            RoleManager<IdentityUser> roleManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
@@ -130,14 +130,14 @@ namespace HFInventApp.Areas.Identity.Pages.Account
             //    _roleManager.CreateAsync(new IdentityRole(RoleSD.Role_Guest)).GetAwaiter().GetResult();
             //}
 
-            Input = new()
-            {
-                RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
-                {
-                    Text = i,
-                     Value = i
-                })
-            };
+            //Input = new()
+            //{
+            //    RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
+            //    {
+            //        Text = i,
+            //         Value = i
+            //    })
+            //};
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

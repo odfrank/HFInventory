@@ -14,10 +14,14 @@ namespace HFInventApp.Controllers
     public class UserController : Controller
     {
         private readonly AppDbContext _db;
-        //private readonly UserManager<ApplicationUser> _userManager;
-        public UserController(AppDbContext db)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        public UserController(AppDbContext db, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _db = db;
+            _userManager = userManager;
+            _signInManager = signInManager;
             //_userManager = userManager;
             //https://localhost:7084/User
         }
@@ -74,36 +78,98 @@ namespace HFInventApp.Controllers
             return View(objUsers);
         }
 
+        
         // Add-Create New User By Admin1
         [Authorize(Roles = RoleSD.Role_Admin1)]
         public IActionResult Create()
         {
+            //Create ViewBag for Facilities
+            var dbFacilities = _db.Facilities.ToList();
+            IEnumerable<SelectListItem> facilitySelectList = dbFacilities.Select(f => new SelectListItem
+            {
+                Value = f.FacilityId.ToString(),
+                Text = f.FacilityName
+            });
+            ViewBag.FacilitySelectList = facilitySelectList;
+
+            //Create ViewBag for Roles
+            var dbRoles = _db.Roles.ToList();
+            IEnumerable<SelectListItem> roleSelectList = dbRoles.Select(r => new SelectListItem
+            {
+                Value = r.Id.ToString(),
+                Text = r.Name
+            });
+            ViewBag.RoleSelectList = roleSelectList;
+
             return View();
         }
+        
         [HttpPost]
         [Authorize(Roles = RoleSD.Role_Admin1)]
-        public IActionResult Create(vmUsers obj)
+        public async Task<IActionResult> CreateAsync(vmUsers obj)
         {
             // Add to ApplicationUsers table
             if (obj.UserInfo != null && ModelState.IsValid)
             {
-                _db.ApplicationUsers.Add(obj.UserInfo);
-                _db.SaveChanges();
+                //// Set UserName = Email
+                //obj.UserInfo.UserName = obj.UserInfo.Email;
+                //obj.UserInfo.NormalizedUserName = obj.UserInfo.Email.ToUpper();
+                //obj.UserInfo.NormalizedEmail = obj.UserInfo.Email.ToUpper();
+                ////obj.UserInfo.Discriminator = "ApplicationUser";
+
+                //// Get and set the passwordhash
+                //obj.UserInfo.PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(obj.UserInfo, obj.Password);
+
+                //// Create the user
+                //_db.ApplicationUsers.Add(obj.UserInfo);
+                //_db.SaveChanges();
+
+                // create the user as ApplicationUser
+                _userManager.CreateAsync(new ApplicationUser
+                {
+                    UserName = obj.UserInfo.Email,
+                    Email = obj.UserInfo.Email,
+                    FullName = obj.UserInfo.FullName,
+                    JobTitle = obj.UserInfo.JobTitle
+                }, obj.Password).GetAwaiter().GetResult();
+
+                //_db.SaveChanges();
 
 
-                // Add to UserRoles table
+                // Assign created adminUser to Admin1 Role
+                ApplicationUser newUser = _db.ApplicationUsers.FirstOrDefault(u => u.Email == obj.UserInfo.Email);
+                //_userManager.AddToRoleAsync(user, RoleSD.Role_Employee).GetAwaiter().GetResult();
+                
+                //Now Add newly created user to UserRoles table
+                if (obj.RoleId != null && obj.RoleId.ToString() != "--Choose Role--")
+                {
+                    _db.UserRoles.Add(new IdentityUserRole<string>
+                    {
+                        UserId = newUser.Id,
+                        RoleId = obj.RoleId
+                    });
+                    _db.SaveChanges();
+                }
 
+                // Now Add newly created user to UserFacilities table
+                if (obj.FacilityId != null && obj.FacilityId.ToString() != "--Choose Facility--")
+                {
+                    _db.UserFacilities.Add(new UserFacility
+                    {
+                        UserId = newUser.Id,
+                        FacilityId = (int)obj.FacilityId
+                    });
+                    _db.SaveChanges();
+                }
 
-                // Add to UserFacilities table
-
-
-                //Return to Index page
-                TempData["success"] = "Facility created successfully";
-                return RedirectToAction("Index", "Facility");
+                //    //Return to Index page               
+                TempData["success"] = "New user created successfully";
+                return RedirectToAction("Index", "User");
             }
 
             return View();
         }
+
         //Edit User
         public IActionResult Edit(string? id)
         {
@@ -232,11 +298,30 @@ namespace HFInventApp.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(string? id)
         {
+            // Delete user from ApplicationUsers table
             ApplicationUser? dbUser = _db.ApplicationUsers.Find(id);
             if (dbUser != null)
             {
                 _db.ApplicationUsers.Remove(dbUser);
                 _db.SaveChanges();
+
+                // Delete User from UserRoles table
+                IdentityUserRole<string> dbUserRole = _db.UserRoles.FirstOrDefault(u => u.UserId == id);
+                if (dbUserRole != null)
+                {
+                    _db.UserRoles.Remove(dbUserRole);
+                    _db.SaveChanges();
+                }              
+                
+                // Delete dbUser from UserFacilities table
+                UserFacility? dbUserFac = _db.UserFacilities.FirstOrDefault(u => u.UserId == id);
+                if (dbUserFac != null)
+                {
+                    _db.UserFacilities.Remove(dbUserFac);
+                    _db.SaveChanges();
+                }
+
+                // Show successful delete status
                 TempData["success"] = "User deleted successfully";
                 return RedirectToAction("Index", "User");
             }
